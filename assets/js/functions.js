@@ -27,7 +27,9 @@
 			});
 			$cache.indicator.append(switchIcon);
 			$cache.indicator.width($cache.imgList.size() * 20);
-			$('li', $cache.indicator).eq(0).addClass('active');
+			
+			$cache.indicatorIcon = $('li', $cache.indicator);
+			$cache.indicatorIcon.eq(0).addClass('active');
 			
 			self.myScroll[0] = new IScroll('#imgBox',{
 					scrollX: true,
@@ -41,7 +43,7 @@
 			self.myScroll[0].on('scrollEnd', function(){
 				var left = -$cache.imgBox.css('transform').split(',')[4];
 				var index = Math.floor(left/windowW);
-				$('li', $cache.indicator).removeClass('active').eq(index).addClass('active');
+				$cache.indicatorIcon.removeClass('active').eq(index).addClass('active');
 				
 			});
 		}
