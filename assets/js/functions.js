@@ -7,7 +7,11 @@
 			$cache.mainBox = $('.wrapper');
 			$cache.imgBox = $('#imgBox .scroll');
 			$cache.imgList = $('.slide', $cache.imgBox);
+			$cache.indicator = $('#indicator ul');
+			windowW = $cache.mainBox.width();
+			
 			var self = this,
+				switchIcon = "",
 				imgSize = $cache.imgList.size(),
 				screenW = $cache.mainBox.width(),
 				screenH = $cache.mainBox.height(),
@@ -19,8 +23,12 @@
 				$self.css({
 					'background-image' : 'url(assets/image/pic_'+i+'_'+screenHNs+'.jpg)'
 				});
+				switchIcon += '<li></li>';
 			});
-
+			$cache.indicator.append(switchIcon);
+			$cache.indicator.width($cache.imgList.size() * 20);
+			$('li', $cache.indicator).eq(0).addClass('active');
+			
 			self.myScroll[0] = new IScroll('#imgBox',{
 					scrollX: true,
 					scrollY: false,
@@ -28,7 +36,13 @@
 					momentum: false,
 					snap: true,
 					snapSeed: 400,
-					keyBindings: true,
+					keyBindings: true
+			});
+			self.myScroll[0].on('scrollEnd', function(){
+				var left = -$cache.imgBox.css('transform').split(',')[4];
+				var index = Math.floor(left/windowW);
+				$('li', $cache.indicator).removeClass('active').eq(index).addClass('active');
+				
 			});
 		}
 	};

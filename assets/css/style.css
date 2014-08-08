@@ -53,6 +53,36 @@ textarea:-moz-placeholder { color:#a9a9a9; }
 	display: block;
 	background: transparent;
 }
+#indicator {
+	position: absolute;
+	z-index: 11;
+	left: 0%;
+	width: 100%;
+	bottom: 20px;
+}
+#indicator .ulSwitch{
+	margin: 0 auto;
+	display: block;
+}
+#indicator .ulSwitch li {
+float: left;
+width: 20px;
+height: 20px;
+}
+
+#indicator .ulSwitch li:before{
+display: block;
+width: 10px;
+height: 10px;
+margin: 0 auto;
+border-radius: 4px 4px 4px 4px;
+cursor: pointer;
+background-color: #FFFFFF;
+content:'';
+}
+#indicator .ulSwitch li.active:before{
+	background-color: #E5A800;
+}
 
 
 
